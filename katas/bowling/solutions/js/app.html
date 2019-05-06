@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tennis Kata</title>
+    <link rel="stylesheet" href="app.css">
+    <script src="app.js"></script>
+</head>
+<body>
+    <h1></h1>
+    <div>
+        <button onclick="scored('a')">Player A scores</button>
+        <button onclick="scored('b')">Player B scores</button>
+    </div>
+    <script>
+        var context = {
+            playerA: 0,
+            playerB: 0
+        };
+
+        var label = document.querySelector("h1");
+        label.innerText = "-";
+
+        function scored(player) {
+            context = document.score(context, player);
+            label.innerText = document.concatScore(context);
+        }
+
+        context = document.score(context);
+        label.innerText = document.concatScore(context);
+    </script>
+</body>
+</html>

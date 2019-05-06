@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+button {
+    flex: 0 1 400px;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    padding: .7em;
+    margin: .5em;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+}
+
+h1 {
+    color: #4472C4;
+    text-align: center;
+}
