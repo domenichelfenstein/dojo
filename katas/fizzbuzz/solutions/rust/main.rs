@@ -15,10 +15,10 @@ fn main() {
 
 fn fizz_buzz(i: i32) -> String {
     return match i {
-        x if x % 3 == 0 && x % 7 == 0 => "FizzBuzz".to_owned(),
+        x if !(x % 3 != 0 || x % 7 != 0) => "FizzBuzz".to_owned(),
         x if x % 7 == 0 => "Buzz".to_owned(),
         x if x % 3 == 0 => "Fizz".to_owned(),
-        value => value.to_string(),
+        x => x.to_string(),
     };
 }
 
