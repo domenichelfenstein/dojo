@@ -1,6 +1,6 @@
 ﻿namespace App
 {
-    using System.IO;
+    using System;
 
     public class HtmlPagesConverter
     {
@@ -16,12 +16,12 @@
         {
             using (this.fileAccess)
             {
-                string html = string.Empty;
+                var html = string.Empty;
 
-                string line = this.fileAccess.GetTextLine();
+                var line = this.fileAccess.GetTextLine();
                 while (line != null)
                 {
-                    html += HttpUtility.HtmlEncode(line);
+                    html += HtmlEncode(line);
                     html += "<br />";
                     line = this.fileAccess.GetTextLine();
                 }
@@ -30,17 +30,14 @@
             }
         }
 
-        private class HttpUtility
+        private static string HtmlEncode(string line)
         {
-            public static string HtmlEncode(string line)
-            {
-                line = line.Replace("<", "&lt;");
-                line = line.Replace(">", "&gt;");
-                line = line.Replace("&", "&amp;");
-                line = line.Replace("\"", "&quot;");
-                line = line.Replace("\'", "&quot;");
-                return line;
-            }
+            line = line?.Replace("<", "&lt;", StringComparison.InvariantCulture);
+            line = line?.Replace(">", "&gt;", StringComparison.InvariantCulture);
+            line = line?.Replace("&", "&amp;", StringComparison.InvariantCulture);
+            line = line?.Replace("\"", "&quot;", StringComparison.InvariantCulture);
+            line = line?.Replace("\'", "&quot;", StringComparison.InvariantCulture);
+            return line;
         }
     }
 }
