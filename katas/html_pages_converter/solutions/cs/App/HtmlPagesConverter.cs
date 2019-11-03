@@ -4,26 +4,26 @@
 
     public class HtmlPagesConverter
     {
-        private readonly string filePath;
+        private readonly IFileAccessWrapper fileAccess;
 
         public HtmlPagesConverter(
-            string filePath)
+            IFileAccessWrapper fileAccess)
         {
-            this.filePath = filePath;
+            this.fileAccess = fileAccess;
         }
 
         public string ConvertToHtml()
         {
-            using (TextReader unicodeFileStream = File.OpenText(this.filePath))
+            using (this.fileAccess)
             {
                 string html = string.Empty;
 
-                string line = unicodeFileStream.ReadLine();
+                string line = this.fileAccess.GetTextLine();
                 while (line != null)
                 {
                     html += HttpUtility.HtmlEncode(line);
                     html += "<br />";
-                    line = unicodeFileStream.ReadLine();
+                    line = this.fileAccess.GetTextLine();
                 }
 
                 return html;

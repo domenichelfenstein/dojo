@@ -15,7 +15,9 @@
             file.WriteLine("plain text");
             file.Close();
 
-            var testee = new HtmlPagesConverter(fileName);
+            var testee = new HtmlPagesConverter(
+                new FileSystemAccessWrapper(
+                    fileName));
             var convertedText = testee.ConvertToHtml();
 
             convertedText.Should().Be("plain text<br />");
