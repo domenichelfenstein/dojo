@@ -1,0 +1,19 @@
+{
+  "name": "kata-template",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "http-server ./ -o /app/",
+    "test": "mocha"
+  },
+  "author": "Domenic Helfenstein",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^0.12.1"
+  },
+  "devDependencies": {
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1"
+  },
+  "type": "module"
+}
