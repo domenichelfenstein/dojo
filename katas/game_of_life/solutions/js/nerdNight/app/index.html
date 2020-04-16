@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <style>
+        td {
+            height: 20px;
+            width: 20px;
+            cursor: pointer;
+        }
+        .dead {
+            background: lightgray;
+        }
+        .alive {
+            background: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <table></table>
+    <button type="button" id="start">Start</button>
+    <button type="button" id="stop">Stop</button>
+    <script type="module">
+        import { createGridWithAllCellsDead, isCellAliveInNextGeneration, isAlive } from "../core/core.js";
+
+        let grid = createGridWithAllCellsDead(50, 50);
+
+        function renderGrid(grid) {
+            const width = grid.length;
+            const height = grid[0].length;
+    
+            const tableElement = document.querySelector("table");
+            tableElement.innerHTML = "";
+            for(let i=0; i < width; i++) {
+                const trElement = document.createElement("tr");
+                for(let j=0; j<height; j++) {
+                    const tdElement = document.createElement("td");
+                    
+                    tdElement.classList.add(isAlive(grid, i, j) ? "alive" : "dead");
+                    tdElement.onclick = () => {
+                        grid[i][j] = !isAlive(grid, i, j);
+                        renderGrid(grid);
+                    }
+                    trElement.appendChild(tdElement);
+                }
+                tableElement.appendChild(trElement);
+            }
+        }
+
+        function calculateNextGeneration(grid) {
+            const width = grid.length;
+            const height = grid[0].length;
+            
+            let nextGrid = createGridWithAllCellsDead(width, height);
+            
+            for(let i=0; i<width; i++) {
+                for(let j=0; j<height; j++) {
+                    nextGrid[i][j] = isCellAliveInNextGeneration(grid, i, j);
+                }
+           }
+           
+           return nextGrid;
+        }
+
+        let interval;
+
+        document.querySelector("#start").onclick = () => {
+            interval = window.setInterval(function(){
+                grid = calculateNextGeneration(grid)
+                renderGrid(grid)
+            }, 25);
+        }
+
+        document.querySelector("#stop").onclick = () => {
+            window.clearInterval(interval);
+        }
+
+        renderGrid(grid);
+    </script>
+</body>
+</html>
