@@ -1,0 +1,15 @@
+{
+  "name": "Game of Life",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Domenic Helfenstein",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1"
+  }
+}
