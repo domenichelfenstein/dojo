@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "start": "http-server ./ -o /app/",
-    "prestart": "node ./node_modules/typescript/bin/tsc",
-    "test": "node node_modules/mocha/bin/mocha -r ts-node/register test/**/*.test.ts"
+    "prestart": "tsc",
+    "test": "mocha -r ts-node/register ./test/**/*.ts",
+    "pretest": "rimraf ./core/**/*.js"
   },
   "author": "Domenic Helfenstein",
   "license": "MIT",
@@ -16,6 +17,7 @@
     "@types/mocha": "^7.0.2",
     "chai": "^4.2.0",
     "mocha": "^7.1.1",
+    "rimraf": "^3.0.2",
     "ts-node": "^8.8.2",
     "typescript": "^3.8.3"
   }
