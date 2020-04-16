@@ -4,10 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conways Game of Life</title>
-    <script src="../core/functional.util.js" type="module"></script>
-    <script src="../core/gameOfLife.js" type="module"></script>
+    <link rel="stylesheet" href="./gameOfLife.css">
 </head>
 <body>
     <h1>Conways Game of Life</h1>
+    <table>
+    </table>
+    <button id="next" type="button">Next</button>
+    <button id="play" type="button">Play</button>
+    <button id="stop" type="button">Stop</button>
+    <script type="module">
+        import { createEmptyGrid, calculateNextGeneration, changeState } from "../core/gameOfLife.js";
+        var grid = createEmptyGrid(10, 10);
+
+        const drawTable = () => {
+            const tableElement = document.querySelector("table");
+            tableElement.innerHTML = "";
+
+            for (let x = 0; x < grid.length; x++) {
+                const trElement = document.createElement("tr");
+                for (let y = 0; y < grid[x].length; y++) {
+                    const isCellAlive = grid[x][y];
+                    const tdElement = document.createElement("td");
+                    tdElement.classList.add(isCellAlive ? "alive" : "dead");
+
+                    tdElement.onclick = () => {
+                        grid = changeState(grid, x, y, !isCellAlive);
+                        drawTable();
+                    }
+
+                    trElement.appendChild(tdElement);
+                }
+                tableElement.appendChild(trElement);
+            }
+        }
+
+        drawTable(grid);
+
+        document.getElementById("next").onclick = () => {
+            grid = calculateNextGeneration(grid);
+            drawTable();
+        }
+
+        let interval;
+
+        document.getElementById("play").onclick = () => {
+            interval = setInterval(
+                () => {
+                    grid = calculateNextGeneration(grid);
+                    drawTable();
+                },
+                250)
+        }
+
+        document.getElementById("stop").onclick = () => {
+            clearInterval(interval);
+        }
+    </script>
 </body>
 </html>
