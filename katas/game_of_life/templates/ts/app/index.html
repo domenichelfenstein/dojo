@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+</head>
+<body>
+    <span></span>
+    <script type="module">
+        import { Calculator } from "../core/core.js";
+
+        const calculator = new Calculator();
+        console.log(calculator.sum([ 20, 30 ]))
+
+        const element = document.querySelector("span")
+        element.innerText = calculator.sum([ 10, 5 ])
+    </script>
+</body>
+</html>
