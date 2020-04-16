@@ -2,11 +2,14 @@
   "name": "game-of-life",
   "version": "1.0.0",
   "scripts": {
+    "start": "http-server ./ -o /app/",
     "test": "mocha --require esm"
   },
   "author": "Domenic Helfenstein",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "http-server": "^0.12.1"
+  },
   "devDependencies": {
     "@types/mocha": "^7.0.2",
     "chai": "^4.2.0",

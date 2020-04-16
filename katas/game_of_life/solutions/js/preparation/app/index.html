@@ -13,10 +13,9 @@
     <button id="next" type="button">Next</button>
     <button id="play" type="button">Play</button>
     <button id="stop" type="button">Stop</button>
+    <button id="reset" type="button">Reset</button>
     <script type="module">
         import { createEmptyGrid, calculateNextGeneration, changeState } from "../core/gameOfLife.js";
-        var grid = createEmptyGrid(10, 10);
-
         const drawTable = () => {
             const tableElement = document.querySelector("table");
             tableElement.innerHTML = "";
@@ -39,6 +38,7 @@
             }
         }
 
+        var grid = createEmptyGrid(10, 10);
         drawTable(grid);
 
         document.getElementById("next").onclick = () => {
@@ -59,6 +59,11 @@
 
         document.getElementById("stop").onclick = () => {
             clearInterval(interval);
+        }
+
+        document.getElementById("reset").onclick = () => {
+            grid = createEmptyGrid(10, 10);
+            drawTable(grid);
         }
     </script>
 </body>
