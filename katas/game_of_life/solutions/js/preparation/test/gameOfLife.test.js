@@ -1,6 +1,6 @@
-const expect = require("chai").expect;
-const pipe = require("../app/functional.util").pipe;
-const { calculateNextGeneration, createEmptyGrid, changeState, countLivingNeighbors } = require("../app/gameOfLife").gol;
+import { expect } from "chai";
+import pipe from "../core/functional.util";
+import { calculateNextGeneration, createEmptyGrid, changeState, countLivingNeighbors } from "../core/gameOfLife"
 
 /*
 Approach:
