@@ -38,8 +38,12 @@
             }
         }
 
-        var grid = createEmptyGrid(10, 10);
-        drawTable(grid);
+        var grid;
+        const start = () => {
+            grid = createEmptyGrid(50, 50);
+            drawTable(grid);
+        }
+        start();
 
         document.getElementById("next").onclick = () => {
             grid = calculateNextGeneration(grid);
@@ -54,17 +58,14 @@
                     grid = calculateNextGeneration(grid);
                     drawTable();
                 },
-                250)
+                25)
         }
 
         document.getElementById("stop").onclick = () => {
             clearInterval(interval);
         }
 
-        document.getElementById("reset").onclick = () => {
-            grid = createEmptyGrid(10, 10);
-            drawTable(grid);
-        }
+        document.getElementById("reset").onclick = start;
     </script>
 </body>
 </html>

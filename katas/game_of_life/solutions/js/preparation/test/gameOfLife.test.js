@@ -36,7 +36,7 @@ describe("Conway's GOF", () => {
             expect(newGrid[2][2]).to.equal(true)
         })
 
-        it("should keep old state change state", () => {
+        it("keeps old grid intact when changing state", () => {
             changeState(grid, 2, 2, true);
             expect(grid[2][2]).to.equal(false)
         })
@@ -56,12 +56,12 @@ describe("Conway's GOF", () => {
             expect(countLivingNeighbors(grid, 1, 4)).to.equal(0)
         })
 
-        it("can find 1 living neighbor", () => {
+        it("returns 1 when finding 1 living neighbor", () => {
             const alteredGrid = changeState(grid, 0, 3, true);
             expect(countLivingNeighbors(alteredGrid, 1, 4)).to.equal(1)
         })
 
-        it("can find 2 living neighbors", () => {
+        it("returns 2 when finding 2 living neighbors", () => {
             const alteredGrid = pipe(
                 g => changeState(g, 0, 3, true),
                 g => changeState(g, 0, 4, true),
@@ -69,7 +69,7 @@ describe("Conway's GOF", () => {
             expect(countLivingNeighbors(alteredGrid, 1, 4)).to.equal(2)
         })
 
-        it("can find 8 living neighbors", () => {
+        it("finds all 8 living neighbors", () => {
             const alteredGrid = pipe(
                 g => changeState(g, 0, 3, true),
                 g => changeState(g, 0, 4, true),
@@ -83,7 +83,7 @@ describe("Conway's GOF", () => {
             expect(countLivingNeighbors(alteredGrid, 1, 4)).to.equal(8)
         })
 
-        it("can find 3 living neighbors on top left corner cell", () => {
+        it("finds 3 living neighbors on top left corner cell", () => {
             const alteredGrid = pipe(
                 g => changeState(g, 0, 1, true),
                 g => changeState(g, 1, 1, true),

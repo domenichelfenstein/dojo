@@ -7,7 +7,7 @@ export const createEmptyGrid = (width, height) =>
             Array(height),
             () => false))
 
-            export const copyGrid = grid =>
+const copyGrid = grid =>
     Array.from(grid.map(column => Array.from(column)))
 
     export const changeState = (grid, x, y, newState) => {
